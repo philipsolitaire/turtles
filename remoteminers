@@ -91,6 +91,7 @@ elseif com == "unfold("..ID..")" then
         end
         end
         turtle.select(1)
+        turtle.forward()
 elseif com == "drop()" then
         turtle.drop()
 elseif com == "dump()" then
