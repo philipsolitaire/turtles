@@ -56,6 +56,10 @@ elseif com == "refuelAll("..ID..")" then
         turtle.down()
         turtle.turnLeft()
         turtle.turnLeft()
+        for index=1,16,1 do
+        turtle.select(index)
+        turtle.refuel()
+        end
         turtle.select(1)
         rednet.broadcast("refuel()","21112001")
 elseif com == "fold("..ID..")" then 
