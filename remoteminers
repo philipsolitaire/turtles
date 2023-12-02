@@ -88,10 +88,12 @@ elseif com == "unfold("..ID..")" then
         count = turtle.getItemCount() 
         if count~=0 then
         turtle.place()
+        peripheral.call("front", "turnOn")
         turtle.back()
         end
         end
         turtle.select(1)
+        turtle.forward()
         turtle.forward()
 elseif com == "drop()" then
         turtle.drop()
