@@ -2,8 +2,7 @@ local modem_side = "right"
 local ID = os.getComputerID()
 rednet.open(modem_side)
  
-local id, com =  rednet.receive("21112001")
-print(ID.." is listening...")
+local id, com
 while true do
 print(ID.." is listening...")
 id, com =  rednet.receive("21112001")
