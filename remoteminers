@@ -24,7 +24,7 @@ elseif com == "refuelAll("..ID..")" then
         end
         turtle.select(1)
         fuel = math.floor(fuel/16)
-        print("total "..fuel*16..", each turtle will get "..fuel)
+        print("each turtle will get "..fuel)
         local bool, data = turtle.inspect()
         while data.name~="computercraft:turtle_normal" do
         turtle.turnLeft()
