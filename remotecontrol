@@ -1,0 +1,15 @@
+local vars = {...}
+rednet.open("back")
+ 
+function command(com)
+    rednet.broadcast(com,"21112001")
+end
+ 
+local reps = 1
+if vars[2]~=nil then
+    reps = vars[2]
+end
+for var=1,reps,1 do
+command(vars[1])
+sleep(0.4)
+end
