@@ -9,7 +9,10 @@ id, com =  rednet.receive("21112001")
 if com == "update()" then
         shell.run("rm startup")
         sleep(0.4)
-        shell.run("http.get("https://raw.githubusercontent.com/philipsolitaire/turtles/main/remoteminers").readAll()")
+        local data = http.get("https://raw.githubusercontent.com/philipsolitaire/turtles/main/remoteminers").readAll()
+        file = fs.open("startup","w")
+        file.write(data)
+        file.close()
         shell.run("startup")
 elseif com == "refuelAll("..ID..")" then
         rednet.broadcast("refuel()","21112001")
