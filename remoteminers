@@ -1,0 +1,115 @@
+local modem_side = "right"
+local ID = os.getComputerID()
+rednet.open(modem_side)
+ 
+local com = nil
+while true do
+print(ID.." is listening...")
+id, com =  rednet.receive("21112001")
+if com == "update()" then
+        shell.run("rm startup")
+        sleep(0.4)
+        shell.run("http.get(url).readAll()")
+        shell.run("startup")
+elseif com == "refuelAll("..ID..")" then
+        rednet.broadcast("refuel()","21112001")
+        rednet.broadcast("dump()","21112001")
+        local fuel = 0
+        for index=1,16,1 do
+        turtle.select(index)
+        fuel = fuel+turtle.getItemCount()
+        end
+        turtle.select(1)
+        fuel = math.floor(fuel/16)
+        print("each turtle will get "..fuel)
+        local bool, data = turtle.inspect()
+        while data.name~="computercraft:turtle_normal" do
+        turtle.turnLeft()
+        bool, data = turtle.inspect()
+        end
+        turtle.refuel(fuel)
+        turtle.up()
+        turtle.forward()
+        local item_count
+        for var=1,15,1 do
+        while turtle.getItemCount() == 0 and turtle.getSelectedSlot()~=16 do
+        turtle.select(turtle.getSelectedSlot()+1)
+        end     
+        item_count = turtle.getItemCount()
+        if item_count < fuel and turtle.getSelectedSlot()~=16 then
+        turtle.dropDown(item_count)
+        turtle.select(turtle.getSelectedSlot()+1)
+        turtle.dropDown(fuel-item_count)
+        else
+        turtle.dropDown(fuel)
+        end
+        turtle.forward()
+        end
+        turtle.turnLeft()
+        turtle.turnLeft()
+        for var=1,16,1 do
+        turtle.forward()
+        end
+        turtle.down()
+        turtle.turnLeft()
+        turtle.turnLeft()
+        turtle.select(1)
+        rednet.broadcast("refuel()","21112001")
+elseif com == "fold("..ID..")" then 
+        rednet.broadcast("dump()","21112001")
+        for index=1,16,1 do
+        turtle.select(index)
+        turtle.drop()
+        end
+        turtle.select(1)
+        local bool, data = turtle.inspect()
+        while data.name~="computercraft:turtle_normal" do
+        turtle.turnLeft()
+        bool, data = turtle.inspect()
+        end
+        while data.name=="computercraft:turtle_normal" do
+        turtle.dig()
+        turtle.forward()
+        bool, data = turtle.inspect()
+        end
+elseif com == "unfold("..ID..")" then
+        turtle.back()
+        local count 
+        for index=1,16,1 do
+        turtle.select(index)
+        count = turtle.getItemCount() 
+        if count~=0 then
+        turtle.place()
+        turtle.back()
+        end
+        end
+        turtle.select(1)
+elseif com == "drop()" then
+        turtle.drop()
+elseif com == "dump()" then
+        for index=1,16,1 do
+        turtle.select(index)
+        turtle.drop()
+        end
+        turtle.select(1)
+elseif com == "ping()" then
+        print("pong")
+elseif com == "refuel()" then
+        turtle.refuel()
+elseif com == "forward()" then
+        turtle.forward()
+elseif com == "dig()" then
+        turtle.dig()
+elseif com == "digDown()" then
+        turtle.digDown()
+elseif com == "turnLeft()" then
+        turtle.turnLeft()
+elseif com == "turnRight()" then
+        turtle.turnRight()
+elseif com == "up()" then
+        turtle.up()
+elseif com == "down()" then
+        turtle.down()
+end
+com = nil
+end
