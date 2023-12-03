@@ -17,7 +17,7 @@ if com == "update()" then
         shell.run("startup")
 elseif com:sub(1,8) == "excavate" then
         print("will excavate...later")
-        local length, depth = input:match("(%d+),(%d+)")
+        local length, depth = com:match("(%d+),(%d+)")
         print(length..","..depth)
 elseif com == "refuelAll("..ID..")" then
         rednet.broadcast("refuel()","21112001")
