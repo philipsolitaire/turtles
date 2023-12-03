@@ -7,6 +7,7 @@ while true do
 print(ID.." is listening...")
 id, com =  rednet.receive("21112001")
 if com == "update()" then
+        print("update complete...")
         shell.run("rm startup")
         sleep(0.4)
         local data = http.get("https://raw.githubusercontent.com/philipsolitaire/turtles/main/remoteminers").readAll()
@@ -14,7 +15,6 @@ if com == "update()" then
         file.write(data)
         file.close()
         shell.run("startup")
-        print("update complete...")
 elseif com == "refuelAll("..ID..")" then
         rednet.broadcast("refuel()","21112001")
         rednet.broadcast("dump()","21112001")
@@ -83,12 +83,14 @@ elseif com == "fold("..ID..")" then
 elseif com == "unfold("..ID..")" then
         turtle.back()
         local count 
+        local computer
         for index=1,16,1 do
         turtle.select(index)
         count = turtle.getItemCount() 
         if count~=0 then
         turtle.place()
-        peripheral.call("front", "turnOn")
+        computer = peripheral.wrap("front") 
+        computer.turnOn().
         turtle.back()
         end
         end
