@@ -118,7 +118,7 @@ elseif com == "refuelAll("..ID..")" then
         end
         turtle.turnLeft()
         turtle.turnLeft()
-        for var=1,15,1 do
+        for var=1,16,1 do
         turtle.forward()
         end
         turtle.down()
