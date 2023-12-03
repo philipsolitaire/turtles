@@ -21,12 +21,12 @@ elseif com:sub(1,8) == "excavate" then
         if length~=nil and depth~=nil then
         for d=1,depth,1 do
         turtle.digDown()
-        sleep(0.4)
+        sleep(0.6)
         turtle.down()
         sleep(0.4)
         for l=1,length,1 do
         turtle.dig()
-        sleep(0.4)
+        sleep(0.6)
         turtle.forward()
         sleep(0.4)
         end
@@ -42,12 +42,12 @@ elseif com:sub(1,9) == "upscavate" then
         if length~=nil and height~=nil then
         for h=1,height,1 do
         turtle.digUp()
-        sleep(0.4)
+        sleep(0.6)
         turtle.up()
         sleep(0.4)
         for l=1,length,1 do
         turtle.dig()
-        sleep(0.4)
+        sleep(0.6)
         turtle.forward()
         sleep(0.4)
         end
