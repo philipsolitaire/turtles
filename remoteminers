@@ -89,7 +89,9 @@ elseif com == "unfold("..ID..")" then
         count = turtle.getItemCount() 
         if count~=0 then
         turtle.place()
+        sleep(0.4)
         peripheral.call("front","turnOn")
+        sleep(0.4)
         turtle.back()
         end
         end
