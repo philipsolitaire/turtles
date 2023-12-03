@@ -29,6 +29,7 @@ elseif com:sub(1,8) == "excavate" then
         turtle.turnLeft()
         turtle.turnLeft()
         end
+        end
 elseif com:sub(1,9) == "upscavate" then
         print("upscavating...")
         local length, height = com:match("(%d+),(%d+)")
@@ -42,6 +43,7 @@ elseif com:sub(1,9) == "upscavate" then
         end
         turtle.turnLeft()
         turtle.turnLeft()
+        end
         end
 elseif com == "refuelAll("..ID..")" then
         rednet.broadcast("refuel()","21112001")
