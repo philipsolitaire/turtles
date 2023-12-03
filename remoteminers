@@ -24,13 +24,13 @@ elseif com:sub(1,5) == "drain" then
         for d=1,depth,1 do
         turtle.placeDown()
         turtle.digDown()
-        sleep(0.6)
+        sleep(1)
         turtle.down()
         sleep(0.4)
         for l=1,length,1 do
         turtle.place()
         turtle.dig()
-        sleep(0.6)
+        sleep(1)
         turtle.forward()
         sleep(0.4)
         end
