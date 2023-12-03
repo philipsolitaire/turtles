@@ -15,6 +15,11 @@ if com == "update()" then
         file.write(data)
         file.close()
         shell.run("startup")
+elseif com:sub(1,13) == "customCommand" then
+        local custom = com:match("%w")[2]
+        print(custom)
+elseif com == "place()" then
+        turtle.place()
 elseif com:sub(1,8) == "excavateFluids" then
         print("excavating...")
         local length, depth = com:match("(%d+),(%d+)")
