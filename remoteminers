@@ -46,8 +46,6 @@ elseif com:sub(1,9) == "upscavate" then
         end
         end
 elseif com == "refuelAll("..ID..")" then
-        rednet.broadcast("refuel()","21112001")
-        rednet.broadcast("dump()","21112001")
         local fuel = 0
         for index=1,16,1 do
         turtle.select(index)
@@ -57,8 +55,10 @@ elseif com == "refuelAll("..ID..")" then
         fuel = math.floor(fuel/16)
         print("each turtle will get "..fuel)
         local bool, data = turtle.inspect()
+        local leftCount = 0
         while data.name~="computercraft:turtle_normal" do
         turtle.turnLeft()
+        leftCount = leftCount + 1
         bool, data = turtle.inspect()
         end
         turtle.refuel(fuel)
@@ -81,12 +81,13 @@ elseif com == "refuelAll("..ID..")" then
         end
         turtle.turnLeft()
         turtle.turnLeft()
-        for var=1,16,1 do
+        for var=1,15,1 do
         turtle.forward()
         end
         turtle.down()
+        for var = 1,leftCount,1 do
         turtle.turnLeft()
-        turtle.turnLeft()
+        end
         for index=1,16,1 do
         turtle.select(index)
         turtle.refuel()
@@ -139,7 +140,11 @@ elseif com == "dump()" then
 elseif com == "ping()" then
         print("pong")
 elseif com == "refuel()" then
+        for index=1,16,1 do
+        turtle.select(index)
         turtle.refuel()
+        end
+        turtle.select(1)
 elseif com == "forward()" then
         turtle.forward()
 elseif com == "dig()" then
