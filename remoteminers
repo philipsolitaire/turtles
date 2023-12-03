@@ -15,9 +15,6 @@ if com == "update()" then
         file.write(data)
         file.close()
         shell.run("startup")
-elseif com:sub(1,13) == "customCommand" then
-        local custom = com:match("%w")[2]
-        print(custom)
 elseif com == "place()" then
         turtle.place()
 elseif com:sub(1,8) == "excavateFluids" then
@@ -32,8 +29,9 @@ elseif com:sub(1,8) == "excavateFluids" then
         turtle.down()
         sleep(0.4)
         for l=1,length,1 do
+        sleep(1)
         turtle.place()
-        sleep(0.4)
+        sleep(1)
         turtle.dig()
         sleep(0.6)
         turtle.forward()
