@@ -16,9 +16,31 @@ if com == "update()" then
         file.close()
         shell.run("startup")
 elseif com:sub(1,8) == "excavate" then
-        print("will excavate...later")
         local length, depth = com:match("(%d+),(%d+)")
-        print(length..","..depth)
+        if length~=nil and depth~=nil then
+        for d=1,depth,1 do
+        turtle.digDown()
+        turtle.down()
+        for l=1,length,1 do
+        turtle.dig()
+        turtle.forward()
+        end
+        turtle.turnLeft()
+        turtle.turnLeft()
+        end
+elseif com:sub(1,9) == "upscavate" then
+        local length, height = com:match("(%d+),(%d+)")
+        if length~=nil and height~=nil then
+        for h=1,height,1 do
+        turtle.digUp()
+        turtle.up()
+        for l=1,length,1 do
+        turtle.dig()
+        turtle.forward()
+        end
+        turtle.turnLeft()
+        turtle.turnLeft()
+        end
 elseif com == "refuelAll("..ID..")" then
         rednet.broadcast("refuel()","21112001")
         rednet.broadcast("dump()","21112001")
