@@ -89,8 +89,7 @@ elseif com == "unfold("..ID..")" then
         count = turtle.getItemCount() 
         if count~=0 then
         turtle.place()
-        computer = peripheral.wrap("front") 
-        computer.turnOn().
+        peripheral.call("front","reboot")
         turtle.back()
         end
         end
