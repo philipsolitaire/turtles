@@ -117,6 +117,7 @@ elseif com == "dig()" then
         turtle.drop()
 elseif com == "digDown()" then
         turtle.digDown()
+        turtle.drop()
 elseif com == "turnLeft()" then
         turtle.turnLeft()
 elseif com == "turnRight()" then
